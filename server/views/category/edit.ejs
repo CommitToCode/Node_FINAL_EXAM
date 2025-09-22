@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Edit Category</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f1ed; 
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      background-color: #fff7f0; 
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 500px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #5c3a21; 
+      margin-bottom: 25px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    label {
+      font-weight: bold;
+      color: #5c3a21;
+    }
+
+    input[type="text"],
+    select {
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #d2b48c; 
+      border-radius: 6px;
+      outline: none;
+      transition: 0.3s;
+    }
+
+    input[type="text"]:focus,
+    select:focus {
+      border-color: #a0522d; 
+      box-shadow: 0 0 5px rgba(160,82,45,0.5);
+    }
+
+    .btn {
+      padding: 12px 15px;
+      background-color: #a0522d; 
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background-color: #7b3f1b; 
+    }
+
+    .error {
+      color: #c62828;
+      font-weight: bold;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Edit Category</h1>
+
+    <% if (error) { %>
+      <p class="error"><%= error %></p>
+    <% } %>
+
+    <form action="/update/category/<%= category._id %>" method="POST">
+      <label for="name">Category Name:</label>
+      <input type="text" name="name" id="name" value="<%= category.name %>" required />
+
+      <label for="status">Status:</label>
+      <select name="status" id="status" required>
+        <option value="true" <%= category.status ? "selected" : "" %>>Active</option>
+        <option value="false" <%= !category.status ? "selected" : "" %>>Inactive</option>
+      </select>
+
+      <button type="submit" class="btn">Update Category</button>
+    </form>
+  </div>
+  <a href="/categories" 
+   style="
+     display: inline-block;
+     background-color: #8b5e3c; 
+     color: white; 
+     text-decoration: none; 
+     padding: 10px 20px; 
+     border-radius: 5px; 
+     margin-bottom: 20px;
+     font-weight: bold;
+     margin-top: 20px;
+   ">
+  ← Back
+</a>
+</body>
+</html>
